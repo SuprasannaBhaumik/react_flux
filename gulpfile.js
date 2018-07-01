@@ -9,6 +9,8 @@ var source = require('vinyl-source-stream'); //uses conventional text streams wi
 
 var concat = require('gulp-concat');
 
+var eslint = require('gulp-eslint');
+
 
 var config = {
 	port : 9005,
@@ -56,16 +58,21 @@ gulp.task('js', function(){
 		.pipe(connect.reload());
 });
 
-gulp.task('default', ['html', 'js', 'css', 'open', 'watch']);
-
-gulp.task('watch', function(){
-	gulp.watch(config.paths.html,['html']);
-	gulp.watch(config.paths.js,['js']);
-});
-
 gulp.task('css', function(){
 	gulp.src(config.paths.css)
 		.pipe(concat('bundle.css'))
 		.pipe(gulp.dest(config.paths.dist + '/css'));
 
 });
+
+gulp.task('eslint', function(){
+	return gulp.src(config.paths.js)
+			   .pipe(eslint.format());
+});
+
+gulp.task('watch', function(){
+	gulp.watch(config.paths.html,['html']);
+	gulp.watch(config.paths.js,['js', 'eslint']);
+});
+
+gulp.task('default', ['html', 'js', 'css', 'eslint', 'open', 'watch']);
