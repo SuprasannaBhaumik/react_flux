@@ -1,7 +1,7 @@
 var React = require('react');
-var Home = require('./homePage');
+
 var Header = require('./header');
-var RouteHandler = require('react-router').RouteHandler;
+var Body = require('./body');
 
 var CreateReactClass = require('create-react-class');
 
@@ -10,7 +10,7 @@ var App = CreateReactClass({
 		return(
 			<div>
 				<Header />
-				<RouteHandler />
+				<Body/>
 			</div>
 		);
 	}

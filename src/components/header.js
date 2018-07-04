@@ -11,7 +11,7 @@ var Header = CreateReactClass({
 			<div className="container">
 				<Link to="authors">Authors</Link>
 				<Link to="home">Home</Link>
-				<Link to="contact">Contact Us</Link>
+				<Link to="about">About Us</Link>
 			</div>	
 		);	
 	}
